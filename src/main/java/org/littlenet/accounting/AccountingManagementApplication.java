@@ -1,13 +1,13 @@
-package org.littlenet;
+package org.littlenet.accounting;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LittlenetAccountingManagementApplication {
+public class AccountingManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LittlenetAccountingManagementApplication.class, args);
+		SpringApplication.run(AccountingManagementApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package org.littlenet;
+package org.littlenet.accounting;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LittlenetAccountingManagementApplicationTests {
+class AccountingManagementApplicationTests {
 
 	@Test
 	void contextLoads() {
