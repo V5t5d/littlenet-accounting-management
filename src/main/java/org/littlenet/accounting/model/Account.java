@@ -10,6 +10,6 @@ public class Account implements Serializable{
 	public String username;
 	 @Size(min = 6, message = "password must have length not less than 6") @NotEmpty
 	public String password;
-	@NotEmpty 
+	@NotEmpty
 	public String role;
 }

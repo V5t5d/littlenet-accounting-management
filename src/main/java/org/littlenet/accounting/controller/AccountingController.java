@@ -23,7 +23,7 @@ public class AccountingController {
 	String addAccount(@RequestBody @Valid Account account) {
 		String res = String.format("account with username %s already exists", account.username);
 		if (accountingService.addAccount(account)) {
-			res = String.format("account with username %s has been udded", account.username);
+			res = String.format("account with username %s has been added", account.username);
 		}
 		return res;
 	}
@@ -53,6 +53,11 @@ public class AccountingController {
 			res = String.format("account with username %s exists", username);
 		}
 		return res;
+	}
+	
+	@GetMapping("/isalive")
+	String isalive() {
+		return "yes";
 	}
 
 }

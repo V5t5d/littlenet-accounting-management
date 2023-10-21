@@ -1,16 +1,26 @@
 package org.littlenet.accounting;
 
+import java.util.Scanner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-import lombok.extern.log4j.Log4j2;
 
 @SpringBootApplication
 //@ComponentScan(basePackages = {"org.littlenet"})
 public class AccountingManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AccountingManagementApplication.class, args);
+		var ct = SpringApplication.run(AccountingManagementApplication.class, args);
+		Scanner scanner = new Scanner(System.in);
+		while(true) {
+			System.out.println("for shutdown type 'exit'");
+			String line = scanner.nextLine();
+			if (line.equalsIgnoreCase("exit")) {
+				break;
+			}
+			
+		}
+		ct.close();
 	}
 }

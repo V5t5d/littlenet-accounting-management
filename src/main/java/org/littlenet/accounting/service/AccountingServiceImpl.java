@@ -1,6 +1,6 @@
 package org.littlenet.accounting.service;
 
-import java.util.HashMap;
+import java.util.*;
 
 import org.littlenet.accounting.model.Account;
 import org.slf4j.*;
@@ -24,8 +24,8 @@ public class AccountingServiceImpl implements AccountingService {
 	}
 
 	private static Logger LOG = LoggerFactory.getLogger(AccountingService.class);
-	@Value("${app.admin.username:admin}")
-	private String admin;
+	@Value("${app.AccountingServiceImpl.listOfRoles}")
+	private List<String> listOfRoles;
 	private PasswordEncoder passwordEncoder;
 	private UserDetailsManager userDetailsManager;
 	private HashMap<String, Account> accounts;
@@ -35,7 +35,7 @@ public class AccountingServiceImpl implements AccountingService {
 	@Override
 	public boolean addAccount(Account account) {
 		boolean res = false;
-		if (!account.username.equals(admin) && !accounts.containsKey(account.username)) {
+		if (listOfRoles.contains(account.role) && !account.username.equals(listOfRoles.get(0)) && !accounts.containsKey(account.username)) {
 			res = true;
 			account.password = passwordEncoder.encode(account.password);
 			accounts.put(account.username, account);
@@ -48,7 +48,7 @@ public class AccountingServiceImpl implements AccountingService {
 	@Override
 	public boolean deleteAccount(String username) {
 		boolean res = false;
-		if (accounts.containsKey(username)) {
+		if (accounts.containsKey(username) && !accounts.get(username).role.equals(listOfRoles.get(0))) {
 			res = true;
 			accounts.remove(username);
 			userDetailsManager.deleteUser(username);
@@ -59,7 +59,7 @@ public class AccountingServiceImpl implements AccountingService {
 	@Override
 	public boolean updateAccount(Account account) {
 		boolean res = false;
-		if (accounts.containsKey(account.username)) {
+		if (accounts.containsKey(account.username) && !account.role.equals(listOfRoles.get(0)) ) {
 			res = true;
 			account.password = passwordEncoder.encode(account.password);
 			accounts.put(account.username, account);
