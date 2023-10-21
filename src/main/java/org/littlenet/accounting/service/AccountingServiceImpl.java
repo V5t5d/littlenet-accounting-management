@@ -17,6 +17,12 @@ import java.io.*;
 
 @Service
 public class AccountingServiceImpl implements AccountingService {
+
+	public AccountingServiceImpl(PasswordEncoder passwordEncoder, UserDetailsManager userDetailsManager) {
+		this.passwordEncoder = passwordEncoder;
+		this.userDetailsManager = userDetailsManager;
+	}
+
 	private static Logger LOG = LoggerFactory.getLogger(AccountingService.class);
 	@Value("${app.admin.username:admin}")
 	private String admin;
@@ -66,11 +72,6 @@ public class AccountingServiceImpl implements AccountingService {
 	@Override
 	public boolean isExists(String username) {
 		return accounts.containsKey(username);
-	}
-
-	public AccountingServiceImpl(PasswordEncoder passwordEncoder, UserDetailsManager userDetailsManager) {
-		this.passwordEncoder = passwordEncoder;
-		this.userDetailsManager = userDetailsManager;
 	}
 
 	@PreDestroy

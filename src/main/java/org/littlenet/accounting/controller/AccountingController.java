@@ -13,6 +13,10 @@ import org.littlenet.accounting.service.AccountingService;
 @Validated // required annotation for additional validation of parameters
 public class AccountingController {
 
+	public AccountingController(AccountingService accountingService) {
+		this.accountingService = accountingService;
+	}
+
 	AccountingService accountingService;
 
 	@PostMapping
@@ -51,7 +55,4 @@ public class AccountingController {
 		return res;
 	}
 
-	public AccountingController(AccountingService accountingService) {
-		this.accountingService = accountingService;
-	}
 }

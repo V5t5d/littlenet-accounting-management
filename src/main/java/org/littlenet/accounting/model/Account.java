@@ -1,8 +1,6 @@
 package org.littlenet.accounting.model;
 
-
 import java.io.Serializable;
-
 import jakarta.validation.constraints.*;
 
 public class Account implements Serializable{
